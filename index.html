@@ -54,8 +54,9 @@
             margin-bottom: 30px;
             font-family: 'Afacad Fluxe', sans-serif;
         }
-         /* 回到首頁的按鈕樣式 */
-         a {
+
+        /* 回到首頁的按鈕樣式 */
+        a {
             display: inline-block;
             padding: 12px 24px;
             font-size: 24px;
@@ -70,22 +71,30 @@
         a:hover {
             background-color: #097fad;
         }
-        body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: url('images/background.jpg') no-repeat center center;
-            background-size: cover;
-        }
 
-        /* 其他的 CSS 樣式... */
-        
+        /* 隱藏的 spaceship */
         .spaceship {
             position: absolute;
             width: 100px; 
             height: auto; 
             transition: transform 0.1s; 
         }
+
+        /* 新增隨機訊息的按鈕樣式 */
+        #randomMessageButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ffdd44;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #randomMessageButton:hover {
+            background-color: #f2c94c;
+        }
+
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -97,27 +106,46 @@
     </style>
 </head>
 <body>
-    <!-- 你的其他內容 -->
-
     <img src="images/Image.jpg" alt="Spaceship" class="spaceship" id="spaceship" />
     <!-- 錯誤訊息區域 -->
     <div class="container">
         <h1>404</h1>
         <p>Oops! It looks like you're lost in space.</p>
         <p>Let's get you <a href="/"><strong>Back to Earth</strong></a> safely.</p>
+        <button id="randomMessageButton">Show Random Error Message</button> <!-- 新增隨機訊息的按鈕 -->
+        <p id="randomMessage" style="display:none; margin-top: 20px;"></p> <!-- 用來顯示隨機訊息的區域 -->
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // 其他的 JavaScript 代碼...
-
-        const spaceship = document.getElementById('spaceship');
-
-        document.addEventListener('mousemove', (event) => {
+        // 當滑鼠移動時讓 spaceship 跟著滑鼠移動
+        const spaceship = $('#spaceship');
+        $(document).mousemove(function(event) {
             const x = event.clientX; 
             const y = event.clientY; 
+            spaceship.css({ transform: `translate(${x}px, ${y}px)` });
+        });
 
-            spaceship.style.transform = `translate(${x}px, ${y}px)`;
+        // 隨機錯誤訊息陣列（擴充內容）
+        const randomMessages = [
+            "404! The universe has swallowed that page.",
+            "Oops! It seems like that page has gone into a black hole.",
+            "Looks like the space-time continuum has lost that page.",
+            "Error 404: Your destination is unreachable.",
+            "Uh-oh! That page is lost in intergalactic space.",
+            "404 Error! The aliens took that page.",
+            "Oops! That page took a wrong turn at Albuquerque.",
+            "404 Not Found: Space pirates have stolen that page.",
+            "That page is traveling faster than light and can't be found!",
+            "Error 404: You're on a mission to nowhere.",
+        ];
+
+        // 點擊按鈕時顯示隨機錯誤訊息
+        $('#randomMessageButton').click(function() {
+            const randomIndex = Math.floor(Math.random() * randomMessages.length);
+            $('#randomMessage').text(randomMessages[randomIndex]).fadeIn(); // 顯示隨機訊息
         });
     </script>
 </body>
 </html>
+
