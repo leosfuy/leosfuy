@@ -9,25 +9,28 @@
     <title>404 Not Found</title>
     <style>
         /* 全頁設置 */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: transparent url('images/background.jpg');
-            background-size: Contain;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: black;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
 
-        /* 動態星空背景 */
-        .stars {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: transparent url('images/background.jpg');
-            background-size: cover;
-            animation: move-stars 1s linear infinite;
-        }
+/* 動態星空背景 */
+.stars {
+    position: fixed; /* 使用固定位置，確保背景覆蓋整個畫面 */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 設置寬度為整個視窗寬度 */
+    height: 100vh; /* 設置高度為整個視窗高度 */
+    background-image: url('images/background.jpg');
+    background-size: cover; /* 讓背景圖完全覆蓋 */
+    background-position: center; /* 背景圖置中 */
+    background-repeat: no-repeat; /* 防止背景圖重複 */
+    animation: move-stars 60s linear infinite; /* 保持原有的動畫效果 */
+}
 
         /* 404訊息容器 */
         .container {
